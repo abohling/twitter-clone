@@ -388,3 +388,14 @@ def add_header(req):
     req.headers["Expires"] = "0"
     req.headers['Cache-Control'] = 'public, max-age=0'
     return req
+
+
+@app.route("/stocksinfo")
+def index():
+    url = 'https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo'
+
+    r = requests.get(url)
+    data = r.json()
+
+    print(data)
+    return render_template("/stockinfo/stockdetail.html")
